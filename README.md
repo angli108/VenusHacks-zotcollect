@@ -1,2 +1,2 @@
-# zotcollect
+# VenusHacks: zotcollect
 IsZotForSale
