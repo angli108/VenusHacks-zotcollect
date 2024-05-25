@@ -1,0 +1,2 @@
+# zotcollect
+IsZotForSale
