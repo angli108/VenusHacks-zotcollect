@@ -3,26 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 
-     <!-- menu! -->
+</head>
+<body>
+         <!-- menu! -->
   <div class="menu">
     <ul>
       <!-- home! -->
       <li><a href="index.html"> 🏠 Home </a></li>
       <!-- resume! -->
-      <li><a href="trade.html">📝 Trade → </a></li>
+      <li><a href="trade.html">📝 Trade </a></li>
       <!-- portfolio! -->
       <li><a href="team.html"> 📂 Meet the Team </a></li>
     </ul>
   </div>
 
-  <div>Home</div>
-
-
-
-</head>
-<body>
+  <div>Welcone to ZotCollect!</div>
+  <div>
+    <img src="room.png"
+    width="1000"
+    height="500">
+  </div>
     
+  <h2>Upload an Image</h2>
+  
+  <!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+  <form id="upload"></form> --> 
+
+  <div class="first"> 
+    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
+    <p><img id="output" width="200" /></p>
+  </div>
+
+  
+  <img src="https://www.sonnyangel.com/renewal/wp-content/uploads/2019/10/Garlic.png" alt="drag-and-drop image script" 
+  title="drag-and-drop image script" id="draggable" class="dragme">
+  
+  
+  <script type="text/javascript">
+    var loadFile = function(event) {
+      var image = document.getElementById('output');
+      image.src = URL.createObjectURL(event.target.files[0]);
+      image.onload = function() {
+            URL.revokeObjectURL(image.src); // free memory
+        };
+        // Initialize draggable functionality for the uploaded image
+      startDrag(image);
+
+    };
+  
+    
+  function startDrag(e) {
+      // determine event object
+      if (!e) {
+        var e = window.event;
+      }
+
+       // IE uses srcElement, others use target
+      var targ = e.target ? e.target : e.srcElement;
+
+      if (targ.className != 'dragme') {return};
+      // calculate event X, Y coordinates
+        offsetX = e.clientX;
+        offsetY = e.clientY;
+
+      // assign default values for top and left properties
+      if(!targ.style.left) { targ.style.left='0px'};
+      if (!targ.style.top) { targ.style.top='0px'};
+
+      // calculate integer values for top and left 
+      // properties
+      coordX = parseInt(targ.style.left);
+      coordY = parseInt(targ.style.top);
+      drag = true;
+
+      // move div element
+        document.onmousemove=dragDiv;
+      }
+      function dragDiv(e) {
+        if (!drag) {return};
+        if (!e) { var e= window.event};
+        var targ=e.target?e.target:e.srcElement;
+        // move div element
+        targ.style.left=coordX+e.clientX-offsetX+'px';
+        targ.style.top=coordY+e.clientY-offsetY+'px';
+        return false;
+      }
+      function stopDrag() {
+        drag=false;
+      }
+      window.onload = function() {
+        document.onmousedown = startDrag;
+        document.onmouseup = stopDrag;
+      }
+  </script>
+  
+
 </body>
 </html>
